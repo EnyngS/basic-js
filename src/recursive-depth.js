@@ -18,30 +18,36 @@ class DepthCalculator {
     this.calculateDepth = this.calculateDepth.bind(this);
     this.count = 1;
   }
+  c = (arr) => arr.some((i) => Array.isArray(i));
   calculateDepth(arr) {
     let count = 1;
-    KEK: for (let i = 0; i < arr.length; i++) {
-      if (Array.isArray(arr[i])) {
-        arr = arr.flat();
-        ++count;
-        return this.calculateDepth(arr);
-        i = 0;
-        continue KEK;
-
-        //   break;
-
-        //   i = 0;
-        //   ++res;
-        //   arr = arr.flat();
-        //   continue KEK;
-      }
+    if (this.c(arr)) {
+      let arr1 = arr.reduce((prev, next) => prev.concat(next), []);
+      return count + this.calculateDepth(arr1);
     }
+    return count;
+    //  KEK: for (let i = 0; i < arr.length; i++) {
+    // if (Array.isArray(arr[i])) {
+    //   arr = arr.flat();
+    //   ++count;
+    //   return this.calculateDepth(arr);
+    //   i = 0;
+    //   continue KEK;
+
+    //   break;
+
+    //   i = 0;
+    //   ++res;
+    //   arr = arr.flat();
+    //   continue KEK;
+    // }
+
     //  count += this.count;
     //  this.count = 0;
-    return count;
+    //  return count;
 
-    let a = c(arr);
-    return a;
+    //  let a = c(arr);
+    //  return a;
   }
 }
 
